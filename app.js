@@ -6,6 +6,7 @@ var Connect = require('./src/database/database.js');
 
 var indexRouter = require('./src/routes/index');
 var usersRouter = require('./src/routes/users');
+var filmsRouter = require('./src/routes/films')
 
 var app = express();
 
@@ -22,5 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/films', filmsRouter)
 
 module.exports = app;
