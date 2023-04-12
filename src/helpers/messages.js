@@ -1,0 +1,1 @@
+// export const existed_username = 'Username exist, Please choose a new username';
