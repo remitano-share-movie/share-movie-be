@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors')
 var Connect = require('./src/database/database.js');
 
 var indexRouter = require('./src/routes/index');
@@ -14,6 +15,8 @@ Connect()
     .then(() => console.log("connect db success"))
     .catch(err => console.log("connect db failed: ", err))
 Promise = global.Promise;
+
+app.use(cors())
 
 app.use(logger('dev'));
 app.use(express.json());
