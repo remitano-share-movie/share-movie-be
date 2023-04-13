@@ -9,7 +9,7 @@ class User {
         created_at=null,
         updated_at=null,
     }) {
-        this.id = id;
+        this._id = id;
         this.username = username;
         this.password = password;
         this.access_token = access_token;

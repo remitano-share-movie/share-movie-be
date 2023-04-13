@@ -24,7 +24,7 @@ const middleware = async (req, res, next)=>{
         if (user.access_token != accessToken)
             return res.status(UNAUTHORIZED).send({ message: 'Access token does not match', errorCode: 3 })
 
-        req.user = new User(user._doc);
+        req.user = new User(user);
         next()
     }
     catch (err) {

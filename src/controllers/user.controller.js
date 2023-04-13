@@ -15,7 +15,7 @@ const user_register = async (user) => {
   }
   catch(err){
     throw {
-      error: 'Username existed',
+      error: err.message,
       message: 'Register fail!'
     }
   }
@@ -49,10 +49,6 @@ const user_login = async (user) => {
   }
 }
 
-const check_exist_email = async () => {
-
-}
-
 const check_exist_username = async (username) => {
   let existed_username = await userModel.findOne({username: username});
   
@@ -61,7 +57,7 @@ const check_exist_username = async (username) => {
 
 const user_logout = async (user) => {
   try {
-    await userModel.updateOne({ _id: user.id }, { access_token: "", updated_at: Number(new Date()) });
+    await userModel.updateOne({ _id: user._id }, { access_token: "", updated_at: Number(new Date()) });
   } catch (error) {
     return { message: "An error has occurred" };
   }
@@ -69,7 +65,6 @@ const user_logout = async (user) => {
 
 module.exports = {
   user_register,
-  check_exist_email,
   check_exist_username,
   user_login,
   user_logout
