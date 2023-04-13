@@ -53,11 +53,17 @@ router.post('/login', async (req, res, next) => {
 router.use(middleware);;
 router.post('/logout', async (req, res, next) => {
   let user = new User(req.body);
+
+  let validate = new ValidateService(req.body);
+  validate.required(["username", "id"]);
+  if (validate.hasError())
+    return res.send({ message: "Logout failed!", errors: validate.errors });
+
   try {
     await user_logout(user);
     res.send({message: 'Logged out'})
   } catch (error) {
-    
+    res.send({message: error.message, error: error.error})
   }
 })
 

@@ -11,14 +11,11 @@ const user_register = async (user) => {
   user.updated_at = datetime;
 
   try {
-    console.log(1);
     await userModel.create(user);
-    console.log(2);
   }
   catch(err){
-    console.log(3);
     throw {
-      error: 'Username existed',
+      error: err.message,
       message: 'Register fail! Username existed'
     }
   }
@@ -63,7 +60,7 @@ const user_logout = async (user) => {
   try {
     await userModel.updateOne({ _id: user._id }, { access_token: "", updated_at: Number(new Date()) });
   } catch (error) {
-    return { message: "An error has occurred" };
+    throw { message: error.message };
   }
 }
 
