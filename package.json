@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": "16.19.1",
+    "node": "16.x",
     "npm": "8.x"
   },
   "scripts": {
-    "dev": "nodemon ./bin/index.js",
-    "start": "node ./bin/index.js"
+    "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
