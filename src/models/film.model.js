@@ -1,40 +1,47 @@
 const mongoose = require('mongoose');
+const flatforms = {
+  youtube: 1
+}
 
 class Film {
-  flatforms = {
-    youtube: 1
-  }
   constructor({
+      id=null,
       film_title=null,
-      film_description=null,
+      film_description='This is a funny film',
       number_of_like=null,
       number_of_unlike=null,
       flatform=null,
-      film_token=null,
-      shared_by=null,
+      film_link=null,
+      user_id=null,
       created_at=null,
       updated_at=null,
   }) {
+    this._id = id;
     this.film_title = film_title;
     this.film_description = film_description;
     this.number_of_like = number_of_like;
     this.number_of_unlike = number_of_unlike;
     this.flatform = flatforms[flatform];
-    this.film_token = film_token;
-    this.shared_by = shared_by;
+    this.film_link = film_link;
+    this.user_id = user_id;
     this.updated_at = updated_at;
     this.created_at = created_at;
+  }
+
+  get_platform = () => {
+    return Object.keys(flatforms).find(key => flatforms[key] === this.flatform);
   }
 }
 
 const filmSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   film_title: String,
-  film_description: Text,
+  film_description: String,
   number_of_like: Number,
   number_of_unlike: Number,
-  username: Number,
+  flatform: Number,
   film_link: String,
-  shared_by: mongoose.Schema.Types.ObjectId,
+  user_id: mongoose.Schema.Types.ObjectId,
   updated_at: Number,
   created_at: Number,
 }, {versionKey: false});
