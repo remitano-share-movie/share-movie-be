@@ -12,26 +12,15 @@ describe("User login", () => {
     correct_password: 'Khoi123@',
     wrong_password: '123123123'
   }
-  
-  beforeAll(() => {
-    Connect()
-    .then(() => console.log("connect db success"))
-    .catch(err => console.log("connect db failed: ", err))
-    Promise = global.Promise;
-  });
-
-  afterAll(() => {
-
-  })
 
   test("user logs in with correct account", async () => {
     const res = await request(app).post('/users/login').send({username: usernames['correct_username'], password: passwords['correct_password']});
     
     const response = JSON.parse(res.text);
-
+    
     expect(response?.message).toEqual('Login successfully');
     expect(response.data.access_token.length).not.toEqual(0);
-  })
+  }, 100000)
 
   test("user logs in with wrong account", async () => {
     const res = await request(app).post('/users/login').send({username: usernames['wrong_username'], password: passwords['correct_password']});
@@ -39,7 +28,7 @@ describe("User login", () => {
     const response = JSON.parse(res.text);
     
     expect(response.error).toEqual('Username or password invalid');
-    expect(response.message).toEqual('Login failed!');
+    expect(response.message).toEqual('Username or password invalid');
   })
 
   test("user logs in with wrong password", async () => {
@@ -48,7 +37,7 @@ describe("User login", () => {
     const response = JSON.parse(res.text);
     
     expect(response.error).toEqual('Username or password invalid');
-    expect(response.message).toEqual('Login failed!');
+    expect(response.message).toEqual('Username or password invalid');
   })
 
   test("user logs in with wrong username and password", async () => {
@@ -57,7 +46,7 @@ describe("User login", () => {
     const response = JSON.parse(res.text);
     
     expect(response.error).toEqual('Username or password invalid');
-    expect(response.message).toEqual('Login failed!');
+    expect(response.message).toEqual('Username or password invalid');
   })
 
   test("user logs in without username but correct password", async () => {

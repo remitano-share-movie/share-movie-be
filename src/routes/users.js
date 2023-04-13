@@ -34,7 +34,6 @@ router.post('/register', async (req, res, next) => {
 });
 
 router.post('/login', async (req, res, next) => {
-  console.log('here');
   let user = new User(req.body);
 
   let validate = new ValidateService(user);

@@ -11,16 +11,20 @@ const user_register = async (user) => {
   user.updated_at = datetime;
 
   try {
+    console.log(1);
     await userModel.create(user);
+    console.log(2);
   }
   catch(err){
+    console.log(3);
     throw {
       error: 'Username existed',
-      message: 'Register fail!'
+      message: 'Register fail! Username existed'
     }
   }
 }
-
+// usertest1681404728319@gmail.com
+// usertest1681404766575@gmail.com
 const user_login = async (user) => {
   
   let userQuery = await userModel.findOne({
@@ -29,7 +33,7 @@ const user_login = async (user) => {
   })
   
   if (!userQuery) {
-    throw {error: 'Username or password invalid', message: 'Login failed!'}
+    throw {error: 'Username or password invalid', message: 'Username or password invalid'}
   }
 
   // userQuery = new User(userQuery._doc);

@@ -9,10 +9,10 @@ var usersRouter = require('./src/routes/users');
 
 var app = express();
 
-// Connect()
-//     .then(() => console.log("connect db success"))
-//     .catch(err => console.log("connect db failed: ", err))
-// Promise = global.Promise;
+Connect()
+    .then(() => console.log("connect db success"))
+    .catch(err => console.log("connect db failed: ", err))
+Promise = global.Promise;
 
 app.use(logger('dev'));
 app.use(express.json());
