@@ -6,6 +6,9 @@
     "node": "16.x",
     "npm": "8.x"
   },
+  "jest": {
+    "verbose": true
+  },
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",

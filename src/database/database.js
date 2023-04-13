@@ -8,4 +8,6 @@ const Connect = async () => {
     return await mongoose.connect(uri,{useUnifiedTopology: true, useNewUrlParser:true});
 }
 
+const Disconnect = async () => {}
+
 module.exports = Connect;

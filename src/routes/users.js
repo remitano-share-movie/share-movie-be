@@ -34,14 +34,17 @@ router.post('/register', async (req, res, next) => {
 });
 
 router.post('/login', async (req, res, next) => {
+  console.log('here');
   let user = new User(req.body);
 
   let validate = new ValidateService(user);
   validate.required(["username", "password"]);
+  if (validate.hasError())
+    return res.send({ message: "Login failed!", errors: validate.errors });
 
   try {
     const userQuery = await user_login(user)
-    
+
     res.send({message: 'Login successfully', data: userQuery})
   } catch (error) {
     res.send({message: error.message, error: error.error})
