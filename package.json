@@ -7,8 +7,8 @@
     "npm": "8.x"
   },
   "scripts": {
-    "dev": "nodemon ./bin/www",
-    "start": "node ./bin/www"
+    "dev": "nodemon ./bin/index.js",
+    "start": "node ./bin/index.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
