@@ -20,8 +20,9 @@ router.use(middleware)
 
 router.post('/add_film', async (req, res, next) => {
   let film = new Film(req.body)
-  let validate = new ValidateService(film)
+  let validate = new ValidateService(req.body)
   validate.required(["film_link", "film_title"])
+  validate.validateLink();
 
   if (validate.hasError())
     return res.send({ message: "Add new film failed", errors: validate.errors });

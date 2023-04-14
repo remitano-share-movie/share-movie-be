@@ -1,8 +1,6 @@
 const request = require('supertest')
 const app = require('../app')
 
-var Connect = require('../src/database/database');
-
 describe("User login", () => {
   const usernames = {
     correct_username: 'usertest1@gmail.com',

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const flatforms = {
+  other: 0,
   youtube: 1
 }
 
@@ -10,7 +11,7 @@ class Film {
       film_description='This is a funny film',
       number_of_like=null,
       number_of_unlike=null,
-      flatform=null,
+      flatform=0,
       film_link=null,
       user_id=null,
       created_at=null,
@@ -35,13 +36,24 @@ class Film {
 
 const filmSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  film_title: String,
+  film_title: {
+      type: String,
+      required: true,
+      index: true,
+    },
   film_description: String,
   number_of_like: Number,
   number_of_unlike: Number,
   flatform: Number,
-  film_link: String,
-  user_id: mongoose.Schema.Types.ObjectId,
+  film_link: {
+    type: String,
+    required: true,
+    index: true,
+  },
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true
+  },
   updated_at: Number,
   created_at: Number,
 }, {versionKey: false});

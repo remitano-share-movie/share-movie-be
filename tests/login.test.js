@@ -1,9 +1,5 @@
 const {user_login} = require('../src/controllers/user.controller')
 const {userModel, User} = require('../src/models/user.model')
-const config = require('dotenv');
-const mongoose = require('mongoose');
-
-config.config();
 
 describe("should", () => {
   const usernames = {
@@ -15,13 +11,13 @@ describe("should", () => {
     wrong_password: '123123123'
   }
 
-  beforeAll(async () => {
-    await mongoose.connect(process.env.MONGODB_URI, {useUnifiedTopology: true, useNewUrlParser:true});
+  beforeAll(() => {
+    require('../src/database/connect.database')
   });
   
-  /* Closing database connection after each test. */
-  afterAll(async () => {
-    await mongoose.connection.close();
+  
+  afterAll(() => {
+    require('../src/database/disconnect.database')
   });
 
   test("login with corrrect account", async () => {

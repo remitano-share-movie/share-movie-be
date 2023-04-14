@@ -40,7 +40,7 @@ module.exports =  class ValidateService{
           this.errors = this.addErrorForm({password: "Password contains lowercase letters"})
       }
       if (!/^(?=.*[A-Z])/.test(pw)){
-          this.errors =this.addErrorForm({password: "Passwords contains uppercase letters"})
+          this.errors =this.addErrorForm({password: "Password contains uppercase letters"})
       }
       if (!/^(?=.*\d)/.test(pw)){
           this.errors = this.addErrorForm({password: "Password contains digits"})
@@ -48,6 +48,13 @@ module.exports =  class ValidateService{
       if (!/^(?=.*(\W|_))/.test(pw)){
           this.errors = this.addErrorForm({password: "Password contains special characters"})
       }
+  }
+
+  validateLink(){
+    const re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+    if (!re.test(this.form.film_link)) {
+        this.errors =this.addErrorForm({film_link: `${this.form.film_link} is not a link`})
+    }
   }
 
   formLogin(){
