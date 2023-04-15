@@ -39,7 +39,7 @@ const list_films = async () => {
                 number_of_unlike: film.number_of_unlike,
                 flatform: film.flatform,
                 film_link : film.film_link,
-                shared_by: user.username,
+                shared_by: user?.username,
                 updated_at: film.updated_at,
                 created_at: film.created_at,
               };

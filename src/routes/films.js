@@ -30,7 +30,7 @@ router.post('/add_film', async (req, res, next) => {
   try {
     const new_film = await add_film(film, req.user)
 
-    res.send({message: 'Login successfully', data: new_film})
+    res.send({message: 'Add film successfully', data: new_film})
   } catch (error) {
     res.send({message: error.message, error: error.error})
   }
