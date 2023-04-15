@@ -16,11 +16,12 @@ const user_register = async (user) => {
   catch(err){
     throw {
       error: err.message,
-      message: 'Register fail!'
+      message: 'Register fail! Username existed'
     }
   }
 }
-
+// usertest1681404728319@gmail.com
+// usertest1681404766575@gmail.com
 const user_login = async (user) => {
   
   let userQuery = await userModel.findOne({
@@ -29,7 +30,7 @@ const user_login = async (user) => {
   })
   
   if (!userQuery) {
-    throw {error: 'Username or password invalid', message: 'Login failed!'}
+    throw {error: 'Username or password invalid', message: 'Username or password invalid'}
   }
 
   // userQuery = new User(userQuery._doc);
@@ -59,7 +60,7 @@ const user_logout = async (user) => {
   try {
     await userModel.updateOne({ _id: user._id }, { access_token: "", updated_at: Number(new Date()) });
   } catch (error) {
-    return { message: "An error has occurred" };
+    throw { message: error.message };
   }
 }
 

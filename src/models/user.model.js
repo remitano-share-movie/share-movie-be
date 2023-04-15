@@ -26,7 +26,10 @@ const userSchema = new mongoose.Schema({
         index: true,
         required: true
       },
-    password: String,
+    password: {
+        type: String,
+        required: true
+      },
     access_token: String,
     updated_at: Number,
     created_at: Number,

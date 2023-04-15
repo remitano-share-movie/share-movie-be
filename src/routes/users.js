@@ -38,10 +38,12 @@ router.post('/login', async (req, res, next) => {
 
   let validate = new ValidateService(user);
   validate.required(["username", "password"]);
+  if (validate.hasError())
+    return res.send({ message: "Login failed!", errors: validate.errors });
 
   try {
     const userQuery = await user_login(user)
-    
+
     res.send({message: 'Login successfully', data: userQuery})
   } catch (error) {
     res.send({message: error.message, error: error.error})
@@ -51,11 +53,17 @@ router.post('/login', async (req, res, next) => {
 router.use(middleware);;
 router.post('/logout', async (req, res, next) => {
   let user = new User(req.body);
+
+  let validate = new ValidateService(req.body);
+  validate.required(["username", "id"]);
+  if (validate.hasError())
+    return res.send({ message: "Logout failed!", errors: validate.errors });
+
   try {
     await user_logout(user);
     res.send({message: 'Logged out'})
   } catch (error) {
-    
+    res.send({message: error.message, error: error.error})
   }
 })
 

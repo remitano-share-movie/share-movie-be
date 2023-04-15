@@ -1,6 +1,5 @@
 const jwt  = require('jsonwebtoken');
 
-
 module.exports = class JwtService {
 
     static STATUS_VALID = 0;
@@ -15,7 +14,7 @@ module.exports = class JwtService {
 
         return jwt.sign({
             data: payload
-          }, process.env.JWT_SIGNING_KEY, { expiresIn: '7d' });
+          }, process.env.JWT_SIGNING_KEY, { expiresIn: process.env.ACCESS_TOKEN_EXPIRE_IN});
     }
 
     verifyJwt(token){
